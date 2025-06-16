@@ -11,7 +11,7 @@ import { Pit } from '../../classes/pit';
 export class PitComponent{
 
   @Input() pit!: Pit;
-  @Output() activated = new EventEmitter<void>();
+  @Output() activated = new EventEmitter<boolean>();
 
    clicking(click: MouseEvent) {
     
@@ -19,7 +19,9 @@ export class PitComponent{
       this.pit.isTagged = !this.pit.isTagged;
     }
     else if (click.button == 1) {
-      this.activated.emit();
+      console.log(click);
+      
+      this.activated.emit(click.ctrlKey);
     }
     else
       this.pit.isChosen = true;

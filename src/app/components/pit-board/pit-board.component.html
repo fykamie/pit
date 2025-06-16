@@ -2,6 +2,6 @@
     <div class="pit-row"  *ngFor="let pitRow of pitBoard.board, let pitR = index">
         <app-pit *ngFor="let pit of pitRow, let pitC = index"
                  [pit]="pit"
-                 (activated)="updateBoard(pit, pitR, pitC)"></app-pit>
+                 (activated)="updateBoard($event, pit, pitR, pitC)"></app-pit>
     </div>
 </div>

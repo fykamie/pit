@@ -23,11 +23,14 @@ export class PitBoard {
     }
 
     public updateBoard() {
-        let r = this.size.height - 1;
-        let c = this.size.width - 1;
-        let activePitsNearby = this.getActivePitsNearby(r,c);
-        let pitText = this.board[r][c].value != "" ? (activePitsNearby-1).toString() : activePitsNearby.toString();
-        this.board[r][c] = new Pit(pitText == '0'? "" : pitText);
+
+        for (let r = 0; r < this.size.height; r++) {
+            for (let c = 0; c < this.size.width; c++) {
+                if( this.board[r][c].value != "X") continue;
+
+                this.setNearbyPits(r,c);
+            }
+        }
     }
     
 
@@ -61,7 +64,7 @@ export class PitBoard {
         return board;
     }
 
-    private getActivePitsNearby(r: number, c: number): number {
+    private setNearbyPits(r: number, c: number) {
         let total = 0;
         let _minr = r == 0 ? r : r-1;
         let _maxr = r == (this._size.height-1) ? r : r+1;
@@ -71,16 +74,23 @@ export class PitBoard {
         
 
         for (let minr = _minr; minr <= _maxr; minr++) {
-            
             for(let minc= _minc; minc <= _maxc; minc++) {
-                console.log(`${minr}-${minc}: ${this.board[minr][minc].value}`);
-                if (this.board[minr][minc].value != "") total++;
+                console.log(`${r}${c} --- ${minr}-${minc}: ${this.board[minr][minc].value}`);
+                if (r == minr && c == minc) continue;
+                if (this.board[minr][minc].value == "X") continue;
+
+                let valueNum = this.board[minr][minc].value == "" ?
+                       0 : Number.parseInt(this.board[minr][minc].value);
+                console.log(`Old val[${minr}][${minc}]: ${valueNum}`);
+                
+                valueNum++;
+                console.log(`Old val[${minr}][${minc}]: ${valueNum}`);
+
+                this.board[minr][minc] = new Pit(valueNum.toString());
 
             }
         }
-        
 
-        return total;
     }
 
 }

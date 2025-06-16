@@ -20,11 +20,11 @@ export class PitBoardComponent {
     
   }
   
-  updateBoard(pit: Pit, pitR: number, pitC: number) {
+  updateBoard(isUpdate: boolean,pit: Pit, pitR: number, pitC: number) {
     let text = pit.value == ""? "X" : "";
     
     this.pitBoard.board[pitR][pitC] = new Pit(text);
-    this.pitBoard.updateBoard();
+    if (isUpdate) this.pitBoard.updateBoard();
   }
 
 }
