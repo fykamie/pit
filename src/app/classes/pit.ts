@@ -1,11 +1,13 @@
 export class Pit {
     public isTagged: boolean;
     public isChosen: boolean;
-    public value: string;
+    private _value: string;
 
-    constructor () {
+    constructor (value: string) {
         this.isChosen = false;
         this.isTagged = false;
-        this.value = "";
+        this._value = value;
     }
+
+    get value(): string { return this._value}
 }

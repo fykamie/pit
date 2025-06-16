@@ -9,7 +9,7 @@ import { Pit } from '../../classes/pit';
   styleUrl: './pit.component.less'
 })
 export class PitComponent {
-  public pit: Pit = new Pit();
+  public pit: Pit = new Pit("");
 
    clicking(click: MouseEvent) {
     
