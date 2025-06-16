@@ -19,6 +19,10 @@ export class PitBoardComponent {
     console.log(this.pitBoard.board);
     
   }
+
+  pitChosen(pitR: number, pitC: number) {
+    this.pitBoard.setNearbyPitsChosenness(pitR, pitC);
+  }
   
 
 }

@@ -22,6 +22,30 @@ export class PitBoard {
         return this._pitBoard;
     }
 
+    public setNearbyPitsChosenness(r: number, c: number) {
+        if (this.board[r][c].value != "") return;
+        
+        let _minr = r == 0 ? r : r-1;
+        let _maxr = r == (this._size.height-1) ? r : r+1;
+        let _minc = c == 0 ? c : c-1;
+        let _maxc = c == (this._size.width-1) ? c : c+1;
+
+        
+
+        for (let minr = _minr; minr <= _maxr; minr++) {
+            for(let minc= _minc; minc <= _maxc; minc++) {
+                if (this.board[minr][minc].isChosen) continue;
+                if (r == minr && c == minc) continue;
+                if (this.board[minr][minc].value == "X") continue;
+                
+                this.board[minr][minc].isChosen = true;
+                if (this.board[minr][minc].value == "") this.setNearbyPitsChosenness(minr, minc);
+
+            }
+        }
+
+    }
+
     private getPitBoard() : Pit[][] {
         let board = [];
 
@@ -52,14 +76,14 @@ export class PitBoard {
         for (let r = 0; r < this.size.height; r++) {
             for (let c = 0; c < this.size.width; c++) {
                if( board[r][c].value != "X") continue;
-               this.setNearbyPits(board, r,c);
+               this.setNearbyPitsValue(board, r,c);
             }
         }
         
         return board;
     }
 
-    private setNearbyPits(board: Pit[][], r: number, c: number) {
+    private setNearbyPitsValue(board: Pit[][], r: number, c: number) {
         let _minr = r == 0 ? r : r-1;
         let _maxr = r == (this._size.height-1) ? r : r+1;
         let _minc = c == 0 ? c : c-1;
