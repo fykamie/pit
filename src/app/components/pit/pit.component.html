@@ -2,5 +2,5 @@
           [class.tagged]="pit.isTagged"
           [class.blown]="pit.isChosen && pit.value == 'X'"
           [class.chosen]="pit.isChosen && pit.value != 'X'"
-          (mousedown)="clicking($event)">
+          (mouseup)="clicking($event)">
                      {{getPitValue()}}</button>

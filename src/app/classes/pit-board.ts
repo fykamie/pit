@@ -22,24 +22,24 @@ export class PitBoard {
         return this._pitBoard;
     }
 
-    public setNearbyPitsChosenness(r: number, c: number) {
-        if (this.board[r][c].value != "") return;
+    public setNearbyPitsChosenness(index: {r: number, c: number}) {
+        if (this.board[index.r][index.c].value != "") return;
         
-        let _minr = r == 0 ? r : r-1;
-        let _maxr = r == (this._size.height-1) ? r : r+1;
-        let _minc = c == 0 ? c : c-1;
-        let _maxc = c == (this._size.width-1) ? c : c+1;
+        let _minr = index.r == 0 ? index.r : index.r-1;
+        let _maxr = index.r == (this._size.height-1) ? index.r : index.r+1;
+        let _minc = index.c == 0 ? index.c : index.c-1;
+        let _maxc = index.c == (this._size.width-1) ? index.c : index.c+1;
 
         
 
         for (let minr = _minr; minr <= _maxr; minr++) {
             for(let minc= _minc; minc <= _maxc; minc++) {
                 if (this.board[minr][minc].isChosen) continue;
-                if (r == minr && c == minc) continue;
+                if (index.r == minr && index.c == minc) continue;
                 if (this.board[minr][minc].value == "X") continue;
                 
                 this.board[minr][minc].isChosen = true;
-                if (this.board[minr][minc].value == "") this.setNearbyPitsChosenness(minr, minc);
+                if (this.board[minr][minc].value == "") this.setNearbyPitsChosenness({r: minr, c: minc});
 
             }
         }

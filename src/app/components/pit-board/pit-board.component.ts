@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PitComponent } from "../pit/pit.component";
 import { PitBoard } from '../../classes/pit-board';
 import { CommonModule } from '@angular/common';
-import { Pit } from '../../classes/pit';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-pit-board',
@@ -14,15 +14,9 @@ import { Pit } from '../../classes/pit';
 export class PitBoardComponent {
   public pitBoard: PitBoard;
   
-  constructor() {
-    this.pitBoard = new PitBoard({width: 5, height: 6}, 3);
-    console.log(this.pitBoard.board);
+  constructor(private gameService: GameService) {
+    this.pitBoard = gameService.pitBoard;
     
   }
-
-  pitChosen(pitR: number, pitC: number) {
-    this.pitBoard.setNearbyPitsChosenness(pitR, pitC);
-  }
-  
 
 }

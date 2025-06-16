@@ -1,7 +1,6 @@
 <div class="pit-board" (contextmenu)="$event.preventDefault()">
-    <div class="pit-row"  *ngFor="let pitRow of pitBoard.board, let pitR = index">
-        <app-pit *ngFor="let pit of pitRow, let pitC = index"
-                 [pit]="pit"
-                 (chosed)="pitChosen(pitR, pitC)"></app-pit>
+    <div class="pit-row"  *ngFor="let pitRow of pitBoard.board">
+        <app-pit *ngFor="let pit of pitRow"
+                 [pit]="pit"></app-pit>
     </div>
 </div>

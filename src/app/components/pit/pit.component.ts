@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { Pit } from '../../classes/pit';
+import { PitEvent } from '../../classes/pit-event';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-pit',
@@ -11,19 +13,18 @@ import { Pit } from '../../classes/pit';
 export class PitComponent{
 
   @Input() pit!: Pit;
-  @Output() chosed: EventEmitter<void> = new EventEmitter();
+  @Output() chosed: EventEmitter<PitEvent> = new EventEmitter();
 
-   clicking(click: MouseEvent) {
-    
-    if (click.button == 2) {
-      this.pit.isTagged = !this.pit.isTagged;
-    }
-    else if(click.button == 0) {
-      this.pit.isChosen = true;
-      this.pit.isTagged = false;
+  constructor(private gameService: GameService) {}
 
-      this.chosed.emit();
-    }
+  clicking(click: MouseEvent) {
+
+    let pitEvent = {
+      pit: this.pit,
+      event: click
+    };
+
+    this.gameService.pitClicked(pitEvent);
 
   }
 
