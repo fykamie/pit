@@ -1,0 +1,5 @@
+  <button [disabled]="pit.isChosen"
+          [class.tagged]="pit.isTagged"
+          (mousedown)="clicking($event)"
+          (contextmenu)="$event.preventDefault()">
+                     {{getPitValue()}}</button>
