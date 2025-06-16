@@ -21,6 +21,14 @@ export class PitBoard {
     public get board() : Pit[][] {
         return this._pitBoard;
     }
+
+    public updateBoard() {
+        let r = this.size.height - 1;
+        let c = this.size.width - 1;
+        let activePitsNearby = this.getActivePitsNearby(r,c);
+        let pitText = this.board[r][c].value != "" ? (activePitsNearby-1).toString() : activePitsNearby.toString();
+        this.board[r][c] = new Pit(pitText == '0'? "" : pitText);
+    }
     
 
     private getPitBoard() : Pit[][] {
@@ -51,6 +59,28 @@ export class PitBoard {
 
         
         return board;
+    }
+
+    private getActivePitsNearby(r: number, c: number): number {
+        let total = 0;
+        let _minr = r == 0 ? r : r-1;
+        let _maxr = r == (this._size.height-1) ? r : r+1;
+        let _minc = c == 0 ? c : c-1;
+        let _maxc = c == (this._size.width-1) ? c : c+1;
+
+        
+
+        for (let minr = _minr; minr <= _maxr; minr++) {
+            
+            for(let minc= _minc; minc <= _maxc; minc++) {
+                console.log(`${minr}-${minc}: ${this.board[minr][minc].value}`);
+                if (this.board[minr][minc].value != "") total++;
+
+            }
+        }
+        
+
+        return total;
     }
 
 }
