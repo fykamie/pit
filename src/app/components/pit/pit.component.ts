@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Pit } from '../../classes/pit';
 
 @Component({
@@ -8,8 +8,9 @@ import { Pit } from '../../classes/pit';
   templateUrl: './pit.component.html',
   styleUrl: './pit.component.less'
 })
-export class PitComponent {
-  public pit: Pit = new Pit("");
+export class PitComponent{
+
+  @Input() pit!: Pit;
 
    clicking(click: MouseEvent) {
     

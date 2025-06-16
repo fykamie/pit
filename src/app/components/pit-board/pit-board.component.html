@@ -1,5 +1,6 @@
 <div class="pit-board">
     <div class="pit-row"  *ngFor="let pitRow of pitBoard.board">
-        <app-pit *ngFor="let pit of pitRow"></app-pit>
+        <app-pit *ngFor="let pit of pitRow"
+                 [pit]="pit"></app-pit>
     </div>
 </div>
