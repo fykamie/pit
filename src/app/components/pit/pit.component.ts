@@ -13,7 +13,6 @@ import { GameService } from '../../services/game.service';
 export class PitComponent{
 
   @Input() pit!: Pit;
-  @Output() chosed: EventEmitter<PitEvent> = new EventEmitter();
 
   constructor(private gameService: GameService) {}
 
