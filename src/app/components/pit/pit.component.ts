@@ -23,10 +23,9 @@ export class PitComponent{
   }
 
   getPitValue() {
-    return this.pit.value;
-    // return this.pit.isChosen ?
-    //    this.pit.value :
-    //    ""
+    return this.pit.isChosen ?
+       this.pit.value :
+       ""
   }
   
 
