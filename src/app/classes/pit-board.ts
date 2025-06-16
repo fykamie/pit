@@ -1,3 +1,4 @@
+import { getRandomInt } from "../utils/helpers";
 import { Pit } from "./pit";
 import { PitBoardSize } from "./pit-board-size";
 
@@ -35,6 +36,20 @@ export class PitBoard {
             board[rowsTotal] = row;
         }
 
+        //Place active pits
+        for (let trys = 0; trys < this._activePits; trys++) {
+            let isTrying = true;
+            while (isTrying) {
+                let r = getRandomInt(0, this._size.height-1)
+                let c = getRandomInt(0, this._size.width-1)
+                if (board[r][c].value == "") {
+                    board[r][c]= new Pit ("X");
+                    isTrying = false;
+                }
+            }
+        }
+
+        
         return board;
     }
 
