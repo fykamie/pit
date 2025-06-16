@@ -22,18 +22,6 @@ export class PitBoard {
         return this._pitBoard;
     }
 
-    public updateBoard() {
-
-        for (let r = 0; r < this.size.height; r++) {
-            for (let c = 0; c < this.size.width; c++) {
-                if( this.board[r][c].value != "X") continue;
-
-                this.setNearbyPits(r,c);
-            }
-        }
-    }
-    
-
     private getPitBoard() : Pit[][] {
         let board = [];
 
@@ -47,25 +35,31 @@ export class PitBoard {
             board[rowsTotal] = row;
         }
 
-        //Place active pits
-        // for (let trys = 0; trys < this._activePits; trys++) {
-        //     let isTrying = true;
-        //     while (isTrying) {
-        //         let r = getRandomInt(0, this._size.height-1)
-        //         let c = getRandomInt(0, this._size.width-1)
-        //         if (board[r][c].value == "") {
-        //             board[r][c]= new Pit ("X");
-        //             isTrying = false;
-        //         }
-        //     }
-        // }
+        // Place active pits
+        for (let trys = 0; trys < this._activePits; trys++) {
+            let isTrying = true;
+            while (isTrying) {
+                let r = getRandomInt(0, this._size.height-1)
+                let c = getRandomInt(0, this._size.width-1)
+                if (board[r][c].value == "") {
+                    board[r][c]= new Pit ("X");
+                    isTrying = false;
+                }
+            }
+        }
 
+        //set up boardland
+        for (let r = 0; r < this.size.height; r++) {
+            for (let c = 0; c < this.size.width; c++) {
+               if( board[r][c].value != "X") continue;
+               this.setNearbyPits(board, r,c);
+            }
+        }
         
         return board;
     }
 
-    private setNearbyPits(r: number, c: number) {
-        let total = 0;
+    private setNearbyPits(board: Pit[][], r: number, c: number) {
         let _minr = r == 0 ? r : r-1;
         let _maxr = r == (this._size.height-1) ? r : r+1;
         let _minc = c == 0 ? c : c-1;
@@ -75,18 +69,15 @@ export class PitBoard {
 
         for (let minr = _minr; minr <= _maxr; minr++) {
             for(let minc= _minc; minc <= _maxc; minc++) {
-                console.log(`${r}${c} --- ${minr}-${minc}: ${this.board[minr][minc].value}`);
                 if (r == minr && c == minc) continue;
-                if (this.board[minr][minc].value == "X") continue;
+                if (board[minr][minc].value == "X") continue;
 
-                let valueNum = this.board[minr][minc].value == "" ?
-                       0 : Number.parseInt(this.board[minr][minc].value);
-                console.log(`Old val[${minr}][${minc}]: ${valueNum}`);
+                let valueNum = board[minr][minc].value == "" ?
+                       0 : Number.parseInt(board[minr][minc].value);
                 
                 valueNum++;
-                console.log(`Old val[${minr}][${minc}]: ${valueNum}`);
 
-                this.board[minr][minc] = new Pit(valueNum.toString());
+                board[minr][minc] = new Pit(valueNum.toString());
 
             }
         }

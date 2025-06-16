@@ -1,52 +1,43 @@
 {
-  "hash": "07947d42",
-  "configHash": "ce49c5b6",
+  "hash": "9ef6a036",
+  "configHash": "0c2b421f",
   "lockfileHash": "be4eecfd",
-  "browserHash": "5813d4b7",
+  "browserHash": "0145d4cf",
   "optimized": {
+    "@angular/common": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "fbdf1e6a",
+      "needsInterop": false
+    },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "4b4bab62",
+      "fileHash": "9c8de0d2",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "804fca07",
+      "fileHash": "46b48e0e",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "cbe023fb",
-      "needsInterop": false
-    },
-    "@angular/common": {
-      "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
-      "file": "@angular_common.js",
-      "fileHash": "9eef4cad",
-      "needsInterop": false
-    },
-    "rxjs": {
-      "src": "../../../../../node_modules/rxjs/dist/esm5/index.js",
-      "file": "rxjs.js",
-      "fileHash": "536a9946",
+      "fileHash": "6440cfe7",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-JPGLKFP3": {
-      "file": "chunk-JPGLKFP3.js"
+    "chunk-Y3YCX2FO": {
+      "file": "chunk-Y3YCX2FO.js"
     },
-    "chunk-T76FZRMF": {
-      "file": "chunk-T76FZRMF.js"
+    "chunk-QHALDMLH": {
+      "file": "chunk-QHALDMLH.js"
     },
-    "chunk-6JJ7KVRE": {
-      "file": "chunk-6JJ7KVRE.js"
-    },
-    "chunk-T4QU4GDF": {
-      "file": "chunk-T4QU4GDF.js"
+    "chunk-GSEU53OH": {
+      "file": "chunk-GSEU53OH.js"
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Pit } from '../../classes/pit';
 
 @Component({
@@ -11,17 +11,11 @@ import { Pit } from '../../classes/pit';
 export class PitComponent{
 
   @Input() pit!: Pit;
-  @Output() activated = new EventEmitter<boolean>();
 
    clicking(click: MouseEvent) {
     
     if (click.button == 2) {
       this.pit.isTagged = !this.pit.isTagged;
-    }
-    else if (click.button == 1) {
-      console.log(click);
-      
-      this.activated.emit(click.ctrlKey);
     }
     else
       this.pit.isChosen = true;
