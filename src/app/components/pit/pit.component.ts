@@ -17,8 +17,10 @@ export class PitComponent{
     if (click.button == 2) {
       this.pit.isTagged = !this.pit.isTagged;
     }
-    else
+    else{
       this.pit.isChosen = true;
+      this.pit.isTagged = false;
+    }
 
   }
 
