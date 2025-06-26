@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PitBoard } from '../classes/pit-board';
-import { PitBoardSize } from '../classes/pit-board-size';
+import { Size } from '../classes/size';
 import { PitEvent } from '../classes/pit-event';
 import { Pit } from '../classes/pit';
 import { Msg } from '../classes/msg';
@@ -10,15 +10,28 @@ import { Msg } from '../classes/msg';
 })
 export class GameService {
   public pitBoard: PitBoard;
-  public boardSize: PitBoardSize;
-  public sumActivePits: number;
+  public boardSize: Size;
   public msg: Msg;
+  public minCol: number;
+  public minActivePit: number;
+  public minRow: number;
+  public maxCol: number;
+  public maxRow: number;
+  public maxActivePit: number;
+  public isGameEnded: boolean;
+
 
   constructor() {
-    this.sumActivePits = 2;
-    this.boardSize = {width: 3, height: 4}
-    this.pitBoard = new PitBoard(this.boardSize, this.sumActivePits);
     this.msg = {isShown: false, text:""}
+    this.minActivePit = 10;
+    this.minCol = 9;
+    this.minRow = 9;
+    this.maxCol = 20;
+    this.maxRow = 20;
+    this.maxActivePit = 85;
+    this.boardSize = {width: this.minCol, height: this.minRow}
+    this.pitBoard = new PitBoard(this.boardSize, this.minActivePit);
+    this.isGameEnded = false;
   }
 
   public pitClicked(pitEv: PitEvent) {
@@ -37,7 +50,7 @@ export class GameService {
     }
   }
 
-  public generateNewBoard(size: PitBoardSize, sumActivePits: number) {
+  public generateNewBoard(size: Size, sumActivePits: number) {
     this.pitBoard = new PitBoard(size,sumActivePits);
   }
 
@@ -62,13 +75,17 @@ export class GameService {
     if (lastClick.event.button == 2 || lastClick.event.button == 1) return;
 
     if (lastClick.pit.value == "X") {
+      this.isGameEnded = true;
       this.msg.text = "Vesztettél :("
       this.msg.isShown = true;
+      return;
     }
-
+    
     if (this.checkAllSafePitsChosen()) {
+      this.isGameEnded = true;
       this.msg.text = "Győzelem!! :)"
       this.msg.isShown = true;
+      return;
     }
 
   }

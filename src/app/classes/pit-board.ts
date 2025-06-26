@@ -1,20 +1,20 @@
 import { getRandomInt } from "../utils/helpers";
 import { Pit } from "./pit";
-import { PitBoardSize } from "./pit-board-size";
+import { Size } from "./size";
 
 export class PitBoard {
-    private _size: PitBoardSize;
+    private _size: Size;
     private _activePits: number;
     private _pitBoard : Pit[][];
 
-    constructor(s: PitBoardSize, aP: number) {
+    constructor(s: Size, aP: number) {
         this._size = s;
         this._activePits = aP;
         this._pitBoard = this.getPitBoard();
     }
 
     
-    public get size() : PitBoardSize {
+    public get size() : Size {
         return this._size;
     }
 
@@ -39,6 +39,7 @@ export class PitBoard {
                 if (this.board[minr][minc].value == "X") continue;
                 
                 this.board[minr][minc].isChosen = true;
+                this.board[minr][minc].isTagged = false;
                 if (this.board[minr][minc].value == "") this.setNearbyPitsChosenness({r: minr, c: minc});
 
             }

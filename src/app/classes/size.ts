@@ -1,4 +1,4 @@
-export class PitBoardSize {
+export class Size {
     public width: number;
     public height: number;
 

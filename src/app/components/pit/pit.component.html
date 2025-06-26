@@ -2,5 +2,12 @@
           [class.tagged]="pit.isTagged"
           [class.blown]="pit.isChosen && pit.value == 'X'"
           [class.chosen]="pit.isChosen && pit.value != 'X'"
+          [style.width.px]="pitSize()"
           (mouseup)="clicking($event)">
-                     {{getPitValue()}}</button>
+              <span class="bubble"
+                    [style.font-size.px]="pitSize() * 0.9"
+                    [style.height.px]="pitSize() * 1.2"
+                    [style.width.px]="pitSize() * 1.2">
+                        {{getPitValue()}}
+              </span>
+    </button>

@@ -2,10 +2,33 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-around;
+    border-radius: 2rem;
 }
 
 .pit-board {
-    background: rgb(223, 228, 230);
-    width: auto;
+    background: #e0fbff;
+    width: 600px;
+    height: 600px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5rem;
+    align-content: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
 
+    padding: 20px;
+
+    box-shadow: 0px 0px 10px 2px #b9ccd3, 0px 0px 20px 1px #4a5166 inset;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.8;
 }

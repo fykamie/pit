@@ -1,7 +1,7 @@
-import { PitBoardSize } from './pit-board-size';
+import { Size } from './size';
 
 describe('PitBoardSize', () => {
   it('should create an instance', () => {
-    expect(new PitBoardSize(5,6)).toBeTruthy();
+    expect(new Size(5,6)).toBeTruthy();
   });
 });
