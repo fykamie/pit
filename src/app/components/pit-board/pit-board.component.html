@@ -1,6 +1,8 @@
 <div class="pit-board" (contextmenu)="$event.preventDefault()" [class.disabled]="gameService.isGameEnded">
+    <app-msg></app-msg>
     <div class="pit-row"
-         *ngFor="let pitRow of gameService.pitBoard.board"
+         *ngFor="let pitRow of gameService.pitBoard.board; let isFirst = first"
+         [class.first-row]="isFirst && gameService.msg.isShown"
          [style.width]="'90%'"
          [style.height]="90 / gameService.boardSize.height + '%'">
          <!-- [style.height]="90 / pitBoard.board.length + '%'"> -->

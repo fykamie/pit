@@ -24,12 +24,12 @@ export class GameService {
   constructor() {
     this.msg = {isShown: false, text:""}
     this.minActivePit = 10;
-    this.minCol = 9;
-    this.minRow = 9;
+    this.minCol = 6;
+    this.minRow = 6;
     this.maxCol = 20;
     this.maxRow = 20;
     this.maxActivePit = 85;
-    this.boardSize = {width: this.minCol, height: this.minRow}
+    this.boardSize = {width: 9, height: 9}
     this.pitBoard = new PitBoard(this.boardSize, this.minActivePit);
     this.isGameEnded = false;
   }
