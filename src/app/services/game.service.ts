@@ -44,9 +44,9 @@ export class GameService {
     if(pitEv.event.button == 0) {
       pitEv.pit.isChosen = true;
       pitEv.pit.isTagged = false;
+      this.pitBoard.setNearbyPitsChosenness(this.findPit(pitEv.pit));
       this.checkEndGame(pitEv);
       
-      this.pitBoard.setNearbyPitsChosenness(this.findPit(pitEv.pit));
     }
   }
 
@@ -76,14 +76,14 @@ export class GameService {
 
     if (lastClick.pit.value == "X") {
       this.isGameEnded = true;
-      this.msg.text = "Vesztettél :("
+      this.msg.text = "Vesztettél 😢"
       this.msg.isShown = true;
       return;
     }
     
     if (this.checkAllSafePitsChosen()) {
       this.isGameEnded = true;
-      this.msg.text = "Győzelem!! :)"
+      this.msg.text = "Győzelem!! 🌞"
       this.msg.isShown = true;
       return;
     }
