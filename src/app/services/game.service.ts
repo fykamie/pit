@@ -88,6 +88,7 @@ export class GameService {
       this.isGameEnded = true;
       this.msg.text = "Vesztettél 😢"
       this.msg.isShown = true;
+      this.showAllPits();
       return;
     }
     
@@ -109,6 +110,14 @@ export class GameService {
     }
 
     return true;
+  }
+
+  private showAllPits() {
+    for (let r = 0; r < this.pitBoard.board.length; r++) {
+      for (let c = 0; c < this.pitBoard.board[r].length; c++) {
+        this.pitBoard.board[r][c].isChosen = true;
+      }
+    }
   }
 
 }
