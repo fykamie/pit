@@ -13,6 +13,7 @@ export class GameService {
   public boardSize: Size;
   public msg: Msg;
   public minCol: number;
+  public activePit: number;
   public minActivePit: number;
   public minRow: number;
   public maxCol: number;
@@ -23,14 +24,15 @@ export class GameService {
 
   constructor() {
     this.msg = {isShown: false, text:""}
-    this.minActivePit = 10;
+    this.minActivePit = 8;
+    this.activePit = this.minActivePit;
     this.minCol = 6;
     this.minRow = 6;
     this.maxCol = 20;
     this.maxRow = 20;
     this.maxActivePit = 85;
     this.boardSize = {width: 9, height: 9}
-    this.pitBoard = new PitBoard(this.boardSize, this.minActivePit);
+    this.pitBoard = new PitBoard(this.boardSize, this.activePit);
     this.isGameEnded = false;
   }
 
@@ -48,6 +50,14 @@ export class GameService {
       this.checkEndGame(pitEv);
       
     }
+  }
+
+  public newGame() {
+    this.isGameEnded = false;
+    this.msg.isShown = false;
+    this.msg.text = "";
+
+    this.generateNewBoard(this.boardSize, this.activePit)
   }
 
   public generateNewBoard(size: Size, sumActivePits: number) {
