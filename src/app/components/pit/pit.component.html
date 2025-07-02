@@ -1,5 +1,4 @@
-  <button [disabled]="pit.isChosen"
-          [class.tagged]="pit.isTagged"
+  <button [class.tagged]="pit.isTagged"
           [class.blown]="pit.isChosen && pit.value == 'X'"
           [class.chosen]="pit.isChosen && pit.value != 'X'"
           [style.width.px]="pitSize()"

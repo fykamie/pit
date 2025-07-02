@@ -37,6 +37,7 @@ export class GameService {
   }
 
   public pitClicked(pitEv: PitEvent) {
+    if (pitEv.pit.isChosen) return;
 
     if (pitEv.event.button == 2) {
       pitEv.pit.isTagged = !pitEv.pit.isTagged;

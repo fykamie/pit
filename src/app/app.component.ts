@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PitBoardComponent } from "./components/pit-board/pit-board.component";
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,11 @@ import { GameService } from './services/game.service';
 })
 export class AppComponent {
   constructor(public gameService: GameService) {}
+
+  @HostListener('document:contextmenu', ['$event'])
+    onRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 
   newGame() {
     this.gameService.newGame();
