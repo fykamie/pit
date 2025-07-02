@@ -2,8 +2,9 @@
 <div class="page">
     <router-outlet />
     <nav class="nav-bar">
-        <button class="new-game" (click)="newGame()">↻</button>
-        <button class="new-game">⚙️</button>
+        <button class="game" routerLink="/" *ngIf="router.url !== '/'">🎮</button>
+        <button class="new-game" (click)="newGame()" *ngIf="router.url === '/'">↻</button>
+        <button class="game-settings" routerLink="/settings" *ngIf="router.url !== '/settings'">⚙️</button>
+        <button class="game-settings" routerLink="/bests" *ngIf="router.url !== '/bests'">🏆</button>
     </nav>
-    <app-pit-board></app-pit-board>
 </div>
